@@ -1,0 +1,256 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Lazada test API",
+        "contact": {
+            "name": "HungTran",
+            "email": "mhungou04@gmail.com"
+        },
+        "version": "0.8.24"
+    },
+    "basePath": "/research/laravel5/laztest/public",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/post/{id}": {
+            "get": {
+                "tags": [
+                    "Get Posts"
+                ],
+                "summary": "Get Post list",
+                "description": "",
+                "operationId": "getPost",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id, id=0 to get all post",
+                        "required": false,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Post not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Updates Post"
+                ],
+                "summary": "Create new Post",
+                "description": "",
+                "operationId": "updatePost",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "number"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Post title",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "description": "Post body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "formData",
+                        "description": "Post tag. Use comma to separate tags",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "408": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Delete Post"
+                ],
+                "summary": "Get Post list",
+                "description": "",
+                "operationId": "deletePost",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id, id=0 to get all post",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "408": {
+                        "description": "Post not found."
+                    }
+                }
+            }
+        },
+        "/post": {
+            "post": {
+                "tags": [
+                    "Create Post"
+                ],
+                "summary": "Create new Post",
+                "description": "",
+                "operationId": "createPost",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Post title",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "description": "Post body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "formData",
+                        "description": "Post tag. Use comma to separate tags",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "408": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/post/tags/{tags}": {
+            "get": {
+                "tags": [
+                    "Get post by tag(s)"
+                ],
+                "summary": "Get post by tag(s)",
+                "description": "",
+                "operationId": "getPostbyTags",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "tags",
+                        "in": "path",
+                        "description": "Tags to search. Use comma to separate tags",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "408": {
+                        "description": "Post not found."
+                    }
+                }
+            }
+        },
+        "/post/count/{tags}": {
+            "get": {
+                "tags": [
+                    "Count post by tag(s)"
+                ],
+                "summary": "Count post by tag(s)",
+                "description": "",
+                "operationId": "getPostbyTags",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "tags",
+                        "in": "path",
+                        "description": "Tags to count. Use comma to separate tags",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "408": {
+                        "description": "Post not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
