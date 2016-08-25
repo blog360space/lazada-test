@@ -53,9 +53,11 @@ class PostTest extends TestCase
      */
     public function testGetPostById()
     {
-        $this->visit('/post');
-        $this->seeHeader('content-type', 'application/json');
+        $post = factory(Post::class)->create();
         
+        $this->call('Get', '/post/' . $post->id);
+        $this->seeHeader('content-type', 'application/json');
+        $this->seeStatusCode(200);
     }
     
     /**
@@ -63,9 +65,11 @@ class PostTest extends TestCase
      */
     public function testDeletePostById()
     {
-        $this->call('Delete', '/post/');
+        $post = factory(Post::class)->create();
+        
+        $this->call('Delete', '/post/' . $post->id);
         $this->seeHeader('content-type', 'application/json');
-      
+        $this->seeStatusCode(200);
     }
     
     /**
@@ -75,7 +79,7 @@ class PostTest extends TestCase
     {
         $this->call('Get', '/post/count');
         $this->seeHeader('content-type', 'application/json');
-        
+        $this->seeStatusCode(200);
     }
     
     /**
@@ -85,6 +89,6 @@ class PostTest extends TestCase
     {
         $this->call('Get', '/post/tags');
         $this->seeHeader('content-type', 'application/json');
-       
+        $this->seeStatusCode(200);
     }
 }
