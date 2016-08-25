@@ -21,8 +21,6 @@ class PostTest extends TestCase
             'tag' => 'phpunit,test'
         ]);
         
-        
-        
         $this->seeHeader('content-type', 'application/json');
         $this->seeStatusCode(200);
         $this->seeInDatabase('posts', ['title' => 'Php Unit test']);
@@ -77,7 +75,14 @@ class PostTest extends TestCase
      */
     public function testCountPostByTags()
     {
-        $this->call('Get', '/post/count');
+        
+        $this->call('Post', '/post', [
+            'title' => 'Php Unit test',
+            'body' => 'Php unit test body',
+            'tag' => 'phpunit,test'
+        ]);
+        
+        $this->call('Get', '/post/count/phpunit,test');
         $this->seeHeader('content-type', 'application/json');
         $this->seeStatusCode(200);
     }
@@ -87,7 +92,7 @@ class PostTest extends TestCase
      */
     public function testGetPostByTags()
     {
-        $this->call('Get', '/post/tags');
+        $this->call('Get', '/post/tags/phpunit,test');
         $this->seeHeader('content-type', 'application/json');
         $this->seeStatusCode(200);
     }
