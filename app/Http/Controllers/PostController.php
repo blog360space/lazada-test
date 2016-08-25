@@ -121,7 +121,7 @@ class PostController extends Controller
             
             $post->save();
             $post->setTags($request->tag);
-            $this->sendMailNotification($post);
+            //this->sendMailNotification($post);
             
             return $this->response($post);
             
